@@ -23,6 +23,7 @@ import dashboardReducer from '@/features/dashboard/dashboardSlice'
 import analyticsReducer from '@/features/analytics/analyticsSlice'
 import profileReducer from '@/features/profile/profileSlice'
 import uploadReducer from '@/features/upload/uploadSlice'
+import onboardingReducer from '@/features/onboardingSlice'
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -45,7 +46,9 @@ const rootReducer = combineReducers({
   dashboard: dashboardReducer,
   analytics: analyticsReducer,
   profile: profileReducer,
-  upload: uploadReducer
+  upload: uploadReducer,
+    onboarding: onboardingReducer // Add onboarding to root reducer
+
 })
 
 export const store = configureStore({
