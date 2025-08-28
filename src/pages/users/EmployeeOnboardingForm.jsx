@@ -545,7 +545,7 @@ const EmployeeOnboardingForm = () => {
     { key: "job", label: "Job", icon: Briefcase },
     { key: "compensation", label: "Compensation", icon: DollarSign },
     { key: "statutory", label: "Statutory", icon: FileText },
-    { key: "documents", label: "Documents", icon: Upload }
+    // { key: "documents", label: "Documents", icon: Upload }
   ];
 
   const formSections = {
@@ -568,7 +568,7 @@ const EmployeeOnboardingForm = () => {
           title: "Contact & Emergency Information",
           fields: [
             { label: "Spouse Name", key: "spouseName", type: "text" },
-            { label: "Aadhar Number", key: "aadharNo", type: "text" },
+            // { label: "Aadhar Number", key: "aadharNo", type: "text" },
             { label: "Emergency Contact Name", key: "emergencyContactName", type: "text" },
             { label: "Emergency Contact Number", key: "emergencyContactNumber", type: "text" }
           ]
@@ -597,10 +597,10 @@ const EmployeeOnboardingForm = () => {
             { label: "Confirmation Date", key: "confirmationDate", type: "date" },
             { label: "Employment Type", key: "employmentType", type: "select", options: ["Full-time", "Part-time", "Contract", "Intern"] },
             { label: "Status", key: "status", type: "select", options: ["Active", "On Probation", "On Leave", "Inactive"], required: true },
-            { label: "Cost Center", key: "costCenter", type: "text" },
-            { label: "Location", key: "location", type: "select", options: ["HQ", "Remote", "Onsite - Plant 1", "Onsite - Plant 2"] },
-            { label: "Company", key: "company", type: "select", options: ["Your Company"] },
-            { label: "Referred By", key: "referredBy", type: "text" }
+            // { label: "Cost Center", key: "costCenter", type: "text" },
+            // { label: "Location", key: "location", type: "select", options: ["HQ", "Remote", "Onsite - Plant 1", "Onsite - Plant 2"] },
+            // { label: "Company", key: "company", type: "select", options: ["Your Company"] },
+            // { label: "Referred By", key: "referredBy", type: "text" }
           ]
         }
       ]
@@ -630,13 +630,13 @@ const EmployeeOnboardingForm = () => {
         { label: "PF Nominee DOB", key: "pfNomineeDob", type: "date" }
       ]
     },
-    documents: {
-      title: "Documents Upload",
-      fields: [
-        { label: "Resume", key: "resume", type: "file", required: true },
-        { label: "ID Proof", key: "idProof", type: "file", required: true }
-      ]
-    }
+    // documents: {
+    //   title: "Documents Upload",
+    //   fields: [
+    //     { label: "Resume", key: "resume", type: "file", required: true },
+    //     { label: "ID Proof", key: "idProof", type: "file", required: true }
+    //   ]
+    // }
   };
 
   useEffect(() => {
@@ -712,67 +712,131 @@ const EmployeeOnboardingForm = () => {
   };
 
   const handleSubmit = () => {
-    if (validateCurrentStep()) {
-      // Prepare data for API
-      const employeeData = {
-        personalInfo: {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          phoneNumber: formData.phoneNumber,
-          dob: formData.dob,
-          gender: formData.gender,
-          fathersName: formData.fathersName,
-          spouseName: formData.spouseName,
-          aadharNo: formData.aadharNo,
-          emergencyContactName: formData.emergencyContactName,
-          emergencyContactNumber: formData.emergencyContactNumber,
-        },
-        jobInfo: {
-          empNumberSeries: formData.empNumberSeries,
-          emp_id: formData.emp_id,
-          department: formData.department,
-          designation: formData.designation,
-          role: formData.role,
-          reporting_to: formData.reporting_to,
-          dateOfJoining: formData.dateOfJoining,
-          probationPeriod: formData.probationPeriod,
-          confirmationDate: formData.confirmationDate,
-          employmentType: formData.employmentType,
-          status: formData.status,
-          costCenter: formData.costCenter,
-          location: formData.location,
-          company: formData.company,
-          referredBy: formData.referredBy,
-        },
-        compensation: {
-          salary: formData.salary,
-          currency: formData.currency,
-          paySchedule: formData.paySchedule,
-          paymentMode: formData.paymentMode,
-          bankName: formData.bankName,
-          bankBranch: formData.bankBranch,
-          bankAccountNumber: formData.bankAccountNumber,
-        },
-        statutoryInfo: {
-          panNumber: formData.panNumber,
-          aadharNo: formData.aadharNo,
-          statutoryIncludes: formData.statutoryIncludes,
-          pfNumber: formData.pfNumber,
-          uanNumber: formData.uanNumber,
-          esiNumber: formData.esiNumber,
-          pfNomineeName: formData.pfNomineeName,
-          pfNomineeDob: formData.pfNomineeDob,
-        },
-        documents: {
-          resume: formData.resume,
-          idProof: formData.idProof,
-        }
-      };
+  if (validateCurrentStep()) {
+    // Prepare data for API
+    const employeeData = {
+      personalInfo: {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phoneNumber: formData.phoneNumber,
+        dob: formData.dob,
+        gender: formData.gender,
+        fathersName: formData.fathersName,
+        spouseName: formData.spouseName,
+        aadharNo: formData.aadharNo,
+        emergencyContactName: formData.emergencyContactName,
+        emergencyContactNumber: formData.emergencyContactNumber,
+      },
+      jobInfo: {
+        empNumberSeries: formData.empNumberSeries,
+        emp_id: formData.emp_id,
+        department: formData.department,
+        designation: formData.designation,
+        role: formData.role,
+        reporting_to: formData.reporting_to,
+        dateOfJoining: formData.dateOfJoining,
+        probationPeriod: formData.probationPeriod,
+        confirmationDate: formData.confirmationDate,
+        employmentType: formData.employmentType,
+        status: formData.status,
+        costCenter: formData.costCenter,
+        location: formData.location,
+        company: formData.company,
+        referredBy: formData.referredBy,
+      },
+      compensation: {
+        salary: formData.salary,
+        currency: formData.currency,
+        paySchedule: formData.paySchedule,
+        paymentMode: formData.paymentMode,
+        bankName: formData.bankName,
+        bankBranch: formData.bankBranch,
+        bankAccountNumber: formData.bankAccountNumber,
+      },
+      statutoryInfo: {
+        panNumber: formData.panNumber,
+        aadharNo: formData.aadharNo,
+        statutoryIncludes: formData.statutoryIncludes,
+        pfNumber: formData.pfNumber,
+        uanNumber: formData.uanNumber,
+        esiNumber: formData.esiNumber,
+        pfNomineeName: formData.pfNomineeName,
+        pfNomineeDob: formData.pfNomineeDob,
+      },
+      documents: {
+        resume: formData.resume,
+        idProof: formData.idProof,
+      }
+    };
 
-      dispatch(createEmployee({ companyId, employeeData }));
-    }
-  };
+    // Pass both companyId and employeeData to the action
+    dispatch(createEmployee({ companyId, employeeData }));
+  }
+};
+
+  // const handleSubmit = () => {
+  //   if (validateCurrentStep()) {
+  //     // Prepare data for API
+  //     const employeeData = {
+  //       personalInfo: {
+  //         firstName: formData.firstName,
+  //         lastName: formData.lastName,
+  //         email: formData.email,
+  //         phoneNumber: formData.phoneNumber,
+  //         dob: formData.dob,
+  //         gender: formData.gender,
+  //         fathersName: formData.fathersName,
+  //         spouseName: formData.spouseName,
+  //         aadharNo: formData.aadharNo,
+  //         emergencyContactName: formData.emergencyContactName,
+  //         emergencyContactNumber: formData.emergencyContactNumber,
+  //       },
+  //       jobInfo: {
+  //         empNumberSeries: formData.empNumberSeries,
+  //         emp_id: formData.emp_id,
+  //         department: formData.department,
+  //         designation: formData.designation,
+  //         role: formData.role,
+  //         reporting_to: formData.reporting_to,
+  //         dateOfJoining: formData.dateOfJoining,
+  //         probationPeriod: formData.probationPeriod,
+  //         confirmationDate: formData.confirmationDate,
+  //         employmentType: formData.employmentType,
+  //         status: formData.status,
+  //         costCenter: formData.costCenter,
+  //         location: formData.location,
+  //         company: formData.company,
+  //         referredBy: formData.referredBy,
+  //       },
+  //       compensation: {
+  //         salary: formData.salary,
+  //         currency: formData.currency,
+  //         paySchedule: formData.paySchedule,
+  //         paymentMode: formData.paymentMode,
+  //         bankName: formData.bankName,
+  //         bankBranch: formData.bankBranch,
+  //         bankAccountNumber: formData.bankAccountNumber,
+  //       },
+  //       statutoryInfo: {
+  //         panNumber: formData.panNumber,
+  //         aadharNo: formData.aadharNo,
+  //         statutoryIncludes: formData.statutoryIncludes,
+  //         pfNumber: formData.pfNumber,
+  //         uanNumber: formData.uanNumber,
+  //         esiNumber: formData.esiNumber,
+  //         pfNomineeName: formData.pfNomineeName,
+  //         pfNomineeDob: formData.pfNomineeDob,
+  //       },
+  //       documents: {
+  //         resume: formData.resume,
+  //         idProof: formData.idProof,
+  //       }
+  //     };
+
+  //     dispatch(createEmployee({ companyId, employeeData }));
+  //   }
+  // };
 
   const renderField = (field) => {
     const hasError = errors[field.key];

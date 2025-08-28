@@ -1,6 +1,9 @@
+
+// @/store/slices/authSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { publicApi, authenticatedApi } from '@/api/endpoints'
 import { STORAGE_KEYS } from '@/utils/constants'
+
 
 // Async thunks
 export const uasChallenge = createAsyncThunk(
@@ -145,6 +148,8 @@ const initialState = {
   isLoading: false,
   error: null,
   user: null,
+  user: JSON.parse(localStorage.getItem('userInfo')) || null,
+  isAuthenticated: !!localStorage.getItem('accessToken'),
   accessToken: localStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN),
   refreshToken: localStorage.getItem(STORAGE_KEYS.REFRESH_TOKEN),
   challenge: null,
@@ -315,6 +320,11 @@ export const selectAuthError = (state) => state.auth.error
 export const selectChallenge = (state) => state.auth.challenge
 export const selectLoginChallenge = (state) => state.auth.loginChallenge
 export const selectTokenExpiresAt = (state) => state.auth.tokenExpiresAt
+
+// NEW: Company-related selectors
+export const selectCompany = (state) => state.auth.user?.company || null
+export const selectCompanyId = (state) => 
+  state.auth.user?.company?.id || state.auth.user?.companyId || null
 
 // Actions
 export const { clearError, setTokens, clearAuth } = authSlice.actions
